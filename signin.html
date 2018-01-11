@@ -1,18 +1,35 @@
-<!DOCTYPE html>
 <html>
 <head>
 <style>
+form{ width: 250px;
+    height: 200px;
+    border: 4px solid white; 
+     margin-left: 500px ;
+      margin-top: 100px;"
 
+}
 body  {
     background-image: url("/home/meet/Desktop/project/personal_website/city.jpg");
     
     background-repeat: no-repeat;
     background-size: cover;
     }
+   #label{
+    color: white ;
+     font-size: 20px;"
+
+   }
+   #label2{
+    color: white;
+    font-size: 20px;
+    background-color: black;
+    margin:40%;
+   }
    #box{width:100%;
     margin:0 auto ;
      background-color: black;
      height:40px;
+     
  }
     #add{
         margin-left: 20%;
@@ -40,14 +57,11 @@ body  {
     font-size:50px;
     font-family:'broadway'
 
-  }
-  .box{display: flex;
-    margin-right: 40px ;
-    margin-bottom: 50px;
-    background-color: white;
-  }
-   
 
+  }
+   #bottom{bottom-color: white ;
+    font-color:black;
+   }
 </style>
  <title> this is my page</title>
  </head>
@@ -58,12 +72,23 @@ body  {
      <a id="add" href="add.html" "> Add your problem </a>
     <a id="home" href="home.html" >home</a>
     <a id="signin" href="signin.html">sign in</a>
- </div> 
- <div class="box" >
- <p> heyyy </p>
-
-   
- </div>
- 
+    </div>
+    <form>
+    <br>
+    <label id="label">username/email</label>
+    <br>
+      <input type="name" name="username" placeholder="write your username or your email">
+      <br>
+      <br>
+      <label id="label">password:</label>
+      <br>
+      <input type="password" name="password" placeholder="write your password">
+      <br>
+      <br>
+      <br>
+      <input type="submit" name="sign in " value="sign in ">
+    </form>
+    <label id="label2">don't have an account ? </label>
+    <a id="label2" href="signup.html">press here</a>
  </body>
  </html>

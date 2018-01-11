@@ -2,13 +2,19 @@
 <html>
 <head>
 <style>
-
 body  {
     background-image: url("/home/meet/Desktop/project/personal_website/city.jpg");
     
     background-repeat: no-repeat;
     background-size: cover;
     }
+    form{ width: 250px;
+        height: 430px;
+        border: 4px solid white; 
+         margin-left: 500px ;
+          margin-top: 100px;"
+        }
+      
    #box{width:100%;
     margin:0 auto ;
      background-color: black;
@@ -41,13 +47,12 @@ body  {
     font-family:'broadway'
 
   }
-  .box{display: flex;
-    margin-right: 40px ;
-    margin-bottom: 50px;
-    background-color: white;
-  }
-   
+  #label{
+   color: white ;
+    font-size: 20px;"
 
+  }
+ 
 </style>
  <title> this is my page</title>
  </head>
@@ -59,11 +64,38 @@ body  {
     <a id="home" href="home.html" >home</a>
     <a id="signin" href="signin.html">sign in</a>
  </div> 
- <div class="box" >
- <p> heyyy </p>
-
-   
- </div>
- 
+ <form>
+<br>
+<label id="label">name</label>
+<br>
+<br>
+<input type="name" name="name" placeholder="write your full name">
+<br>
+<br>
+<label id="label" ></label>
+<br>
+<input type="name" name="email" placeholder="write your email">
+<br>
+<br>
+<label id="label" >password</label>
+<br>
+<input type="password" name="password" placeholder="write a password">
+<br>
+<br>
+<label id="label" >sex</label>
+<br>
+<input type="radio" name="sex" value="female" > female
+<br>
+<input  type="radio" name="sex" value="male">male 
+<br>
+<br>
+<label id="label" >age</label>
+<br>
+<input type="name" name="age" placeholder="write you age">
+<br>
+<br>
+<br>
+<input type="submit" name="sign up" value="sign up ">
+</form>
  </body>
  </html>
