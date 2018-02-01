@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import os
-from flask_heroku import Heroku 
+# from flask_heroku import Heroku 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./test.db'
@@ -67,10 +67,10 @@ def signin():
 		return render_template('signin.html')
 	else:
 		email=request.form ['email']
-    	user=Users.query.filter_by(email=email).first()
-    	password=request.form['password']
-    	if user.password==password :
-    		return render_template('home.html',name=user.name , email= user.email , age=user.age , id=user.id   ) 
+		user=Users.query.filter_by(email=email).first()
+		password=request.form['password']
+		if user.password==password :
+			return render_template('home.html',name=user.name , email= user.email , age=user.age , id=user.id   ) 
 
 
 
