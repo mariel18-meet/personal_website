@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy
+from flask.ext.sqlalchemy import SQLAlchemy
 import os
-from flask_heroku import Heroku 
+from flask.ext.heroku import Heroku 
+
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./test.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db=SQLAlchemy(app)
 
 class Users(db.Model):
@@ -17,42 +18,37 @@ class Users(db.Model):
 	sex=db.Column(db.String(1),unique=False,nullable=True)
 	age=db.Column(db.String(5),unique=False,nullable=True)
 
+
+	class Posts(db.Model):
+		__tablename__="posts"
+		id = db.Column(db.Integer, primary_key=True)
+		problem= db.Column(db.String(500), unique=True, nullable=False)
+		name = db.Column(db.String(30), unique=True, nullable=False)
+		Description = db.Column(db.String(1000), unique=True, nullable=False)
+		fileupload=db.Column(db.file(),unique=False,nullable=True)
+		
+
+		
 	def __init__(self, name, email, password, sex, age ):
 		self.name=name
 		self.email=email  
 		self.password=password
 		self.sex=sex
 		self.age=age
-db.create_all()
 
-class Posts(db.Model):
-	__tablename__="posts"
-	id = db.Column(db.Integer, primary_key=True)
-	problem= db.Column(db.String(500), unique=False, nullable=False)
-	name = db.Column(db.String(30), unique=False, nullable=False)
-	Description = db.Column(db.String(1000), unique=False, nullable=False)
-	
-	def __init__(self, problem, name, Description ):
+	def __init__(self, problem, name, Description, fileupload ):
 		self.problem=problem
 		self.name=name  
 		self.Description=Description
-		
+		self.fileupload=fileupload
 		
 db.create_all()
 
 
 @app.route("/")
-@app.route("/home",methods= ['GET' , 'POST'])
+@app.route("/home")
 def home():
-	if request.method=='GET':
-		return render_template("home.html")
-	else:
-		name=request.form['name']
-		problem=request.form['form']
-		Description=request.form["Description"]
-
-
-	return render_template('home.html', posts = posts, problem=post.problem , name=post.name, Description=post.Description)
+	return render_template('home.html')
 
 
 @app.route("/add")
@@ -60,19 +56,9 @@ def add():
 	return render_template('add.html')
 
 
-@app.route("/signin", methods= ['GET' , 'POST'])
+@app.route("/signin")
 def signin():
-	if request.method== 'GET':
-		return render_template('signin.html')
-	else:
-		email=request.form ['email']
-    	user=Users.query.filter_by(email=email).first()
-    	password=request.form['password']
-    	if user.password==password :
-    		return render_template('home.html',name=user.name , email= user.email , age=user.age , id=user.id   ) 
-
-
-
+	return render_template('signin.html')
 
 
 @app.route("/signup" )
@@ -90,20 +76,19 @@ def createuser():
 	user= Users(name, email,password,sex,age)
 	db.session.add(user)
 	db.session.commit()
-	return render_template('signin.html')
+	return render_template('home.html')
 
 @app.route("/posts", methods=['POST'])
 def posts():
 	data=request.data
 	problem=request.form['problem']
 	name=request.form['name']
-	Description=request.form['Description']
-	post=Posts(problem,name,Description)
+	Description=request.form['description']
+	fileupload=request.form['fileupload']
+	post=Posts(problem,name,Description,fileupload)
 	db.session.add(post)
 	db.session.commit()
-	'''pl=posts.query.all()'''
-
-	return render_template('home.html', problem=post.problem , name=post.name, Description=post.Description)
+	return render_template('home.html')
 
 	
 	 # if request.method == 'POST':
@@ -133,5 +118,6 @@ def login():
 def profile(user_id):
 	posts = 
 '''
-app.run()
 
+
+app.run()
