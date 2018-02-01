@@ -134,5 +134,5 @@ def login():
 def profile(user_id):
 	posts = 
 '''
-app.run()
+# app.run()
 
