@@ -88,7 +88,7 @@ def posts():
 	post=Posts(problem,name,Description,fileupload)
 	db.session.add(post)
 	db.session.commit()
-	return render_template('home.html')
+	return render_template('home.html' post.problem , post.name , post.description)
 
 	
 	 # if request.method == 'POST':
